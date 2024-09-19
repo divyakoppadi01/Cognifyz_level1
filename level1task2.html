@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <style>
+        * {
+    box-sizing: border-box;
+    text-align: center;
+}
+
+#bg-image {
+    position: absolute;
+    background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTl0ZpMDU-QuGWqVC58Gkb3i-_ki5FdBySqvQ&s');
+    height: 100%;
+    width: 100%;
+    background-size:cover;
+    background-position: center;
+    filter: blur(10px);
+    z-index: -1;
+}
+
+#container {
+    width: 1000px;
+    height: 400px;
+    margin: 0 auto;
+    z-index: 10;
+}
+
+#upper {
+    height: 20%;
+    width: fit-content;
+    display: flex;
+    margin: 0 auto;
+    padding: 100px 0 90px;
+}
+
+#input-1, #input-2 {
+    height: 50px;
+    width: 300px;
+    font-size: 40px;
+    margin: 10px;
+    border-radius: 5px;
+}
+
+#input-1:hover, #input-2:hover {
+    background-color: rgb(194, 243, 226);
+}
+
+#plus, #equals {
+    font-size: 30px;
+    font-weight:bolder;
+    margin: 10px;
+    color: rgb(238, 242, 243);
+}
+
+#equals {
+    text-align: center;
+}
+
+#mid {
+    height: auto;
+    width: fit-content;
+    display: flex;
+    margin: 20px auto;
+    background-color: yellow;
+}
+
+#result {
+    height: 80px;
+    width: 500px;
+    font-size: 70px;
+    border: 1px solid gray;
+    overflow: scroll;
+    background-color: rgb(118, 238, 238);
+}
+
+#lower {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#add-btn {
+    width:250px;
+    height: 40px;
+    font-size: 30px;
+    margin-top: 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: azure;
+}
+
+#add-btn:hover {
+    background-color: rgb(168, 201, 237);
+}
+
+.clicked {
+    background-color: rgb(0, 51, 255) !important;
+    border: 1px solid blue !important;
+}
+
+#reset-btn {
+    width:150px;
+    height: 30px;
+    font-size: 20px;
+    margin-top: 15px;
+    border-radius: 5px;
+    background-color: rgb(237, 55, 55);
+}
+    </style>
+    <title>Web Development: Level-1,Task-2</title>
+</head>
+
+<body>
+    <div id="bg-image"></div>
+    <div id="container">
+        <div id="upper">
+            <input id="input-1" type="number" placeholder=0 required>
+            <p id="plus"> + </p>
+            <input id="input-2" type="number" placeholder=0 required>
+        </div>
+        <p id="equals"> = </p>
+        <div id="mid">
+            <div id="result">0</div>
+        </div>
+        <div id="lower">
+            <button id="add-btn">ADD</button>
+            <button id="reset-btn">RESET</button>
+        </div>
+    </div>
+     <script>
+        const addButton = document.getElementById("add-btn");
+const resetButton = document.getElementById("reset-btn");
+
+const message = () => {
+    const clock = new Date();
+    const hours = clock.getHours();
+    if (hours >= 4 && hours < 12) {
+        return "Good Morning!";
+    } else if (hours >= 12 && hours < 4) {
+        return "Good Afternoon!";
+    } else if (hours >= 4 && hours <= 7) {
+        return "Good Evening!";
+    } else {
+        return "Its night time!";
+    }
+}
+
+alert(message());
+
+//for ADD button
+const add = () => {
+    const num1 = Number(document.getElementById("input-1").value);
+    const num2 = Number(document.getElementById("input-2").value);
+    addButton.classList.add("clicked");
+    setTimeout(() => {
+        addButton.classList.remove("clicked");
+    }, 3000);
+    document.getElementById("result").innerText = num1 + num2;
+};
+
+//for RESET button
+const reset = () => {
+    document.getElementById("input-1").value = "";
+    document.getElementById("input-2").value = "";
+    document.getElementById("result").innerText = 0;
+}
+
+addButton.onclick = add;
+resetButton.onclick = reset;
+
+//when page is reloaded/refreshed
+window.onload = () => {
+    document.getElementById("input-1").value = "";
+    document.getElementById("input-2").value = "";
+}
+    </script>
+
+</body>
+
+</html>
